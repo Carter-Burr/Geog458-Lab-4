@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Custom Mapbox Map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet'>
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+        .map-overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+<div class="map-overlay">
+    <h2>Map Layers</h2>
+    <input type="checkbox" id="basemap"> <label for="basemap">Basemap</label><br>
+    <!-- <input type="checkbox" id="thematic-layer" checked> <label for="thematic-layer">Thematic Layer</label><br>
+    <input type="checkbox" id="basemap-with-thematic" checked> <label for="basemap-with-thematic">Basemap with Thematic Layer</label><br>
+    <input type="checkbox" id="custom-layer" checked> <label for="custom-layer">Custom Layer</label><br> -->
+</div>
+
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiY2FydGIyMCIsImEiOiJjbG9vdTlka2gwMXZlMnJwdHhkZGJ5ZHZsIn0.pe21frQ6A_Q5QZjbW9JfbA';
+
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/light-v10',
+        center: [-122.2559435, 47.6002614],
+        zoom: 12
+    });
+
+    map.on('load', function () {
+        // Add basemap
+        map.addSource('basemap', {
+            type: 'raster',
+            url: 'mapbox://styles/cartb20/clsf9ohtx003e01q1hhzkbxab',
+            tileSize: 256
+        });
+        map.addLayer({
+            'id': 'basemap',
+            'type': 'raster',
+            'layout': {
+                'visibility': 'none'
+            },
+            'source': 'basemap'
+        });
+
+
+        
+    });
+
+    // Add layer switcher functionality
+    document.getElementById('basemap').addEventListener('change', function (e) {
+        map.setLayoutProperty('basemap', 'visibility', e.target.checked ? 'visible' : 'visible');
+    });
+    // document.getElementById('thematic-layer').addEventListener('change', function (e) {
+    //     map.setLayoutProperty('thematic-layer', 'visibility', e.target.checked ? 'visible' : 'none');
+    // });
+    // document.getElementById('basemap-with-thematic').addEventListener('change', function (e) {
+    //     map.setLayoutProperty('basemap-with-thematic', 'visibility', e.target.checked ? 'visible' : 'none');
+    //     map.setLayoutProperty('thematic-layer-overlay', 'visibility', e.target.checked ? 'visible' : 'none');
+    // });
+    // document.getElementById('custom-layer').addEventListener('change', function (e) {
+    //     map.setLayoutProperty('custom-layer', 'visibility', e.target.checked ? 'visible' : 'none');
+    // });
+
+</script>
+
+</body>
+</html>
