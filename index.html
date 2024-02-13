@@ -63,6 +63,15 @@
             'attribution': 'Map tiles designed by Carter Burr'
         });
 
+        map.addSource('basefire', {
+            'type': 'raster',
+            'tiles': [
+                'assets/basefire/{z}/{x}/{y}.png'
+            ],
+            'tileSize': 256,
+            'attribution': 'Map tiles designed by Carter Burr'
+        });
+
         map.addLayer({
             'id': 'basemap',
             'type': 'raster',
@@ -81,7 +90,16 @@
             'source': 'firestation'
         });
 
-        const toggleableLayerIds = ['basemap', 'firestation'];
+        map.addLayer({
+            'id': 'basefire',
+            'type': 'raster',
+            'layout': {
+                'visibility': 'none'
+            },
+            'source': 'basefire'
+        });
+
+        const toggleableLayerIds = ['basemap', 'firestation', 'basefire'];
         const menu = document.getElementById('menu');
 
         toggleableLayerIds.forEach(layerId => {
