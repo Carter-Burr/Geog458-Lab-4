@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8' />
-    <title>Map with Toggleable Layers</title>
+    <title>Seattle Fire Station Tiles</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
@@ -28,10 +28,22 @@
             background-color: #3388ff;
             color: #fff;
         }
+        #title {
+            position: absolute;
+            background-color: white;
+            padding: 4px;
+            border-radius: 3px;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            z-index: 1000; /* Ensure title is above map */
+        }
     </style>
 </head>
 <body>
-
+<div id='title'>Navigating Seattle: A Fire Station Exploration</div>
 <div id='map' style='position: absolute; top: 0; bottom: 0; width: 100%;'></div>
 <div id='menu'></div>
 
@@ -41,7 +53,7 @@
         container: 'map',
         style: 'mapbox://styles/mapbox/light-v10',
         zoom: 11,
-        center: [-122.259435, 47.6002614]
+        center: [-122.259435, 47.6002614],
     });
 
     map.on('load', () => {
@@ -136,6 +148,14 @@
             });
             menu.appendChild(link);
         });
+    });
+
+    map.once('idle', function () {
+        var scale = new mapboxgl.ScaleControl({
+            maxWidth: 160,
+            unit: 'imperial'
+        });
+        map.addControl(scale);
     });
 </script>
 
