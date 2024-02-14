@@ -1,6 +1,6 @@
 # Navigating Seattle: A Fire Station Exploration
 
-Map URL:
+Map URL: https://carter-burr.github.io/Seattle-Tiles-Map/index.html
 
 The examined geographic area for all of our tiles is Seattle. All of the available zoom levels for these tile sets are 11-12, as this was the only way I could make it big enough and still able to upload to GitHub. This also allowed me to maintain consistency throughout my map.
 
