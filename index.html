@@ -41,7 +41,7 @@
         container: 'map',
         style: 'mapbox://styles/mapbox/light-v10',
         zoom: 11,
-        center: [-122.2559435, 47.6002614]
+        center: [-122.259435, 47.6002614]
     });
 
     map.on('load', () => {
@@ -67,6 +67,15 @@
             'type': 'raster',
             'tiles': [
                 'assets/basemap-and-data/{z}/{x}/{y}.png'
+            ],
+            'tileSize': 256,
+            'attribution': 'Map tiles designed by Carter Burr'
+        });
+
+        map.addSource('uw', {
+            'type': 'raster',
+            'tiles': [
+                'assets/uw/{z}/{x}/{y}.png'
             ],
             'tileSize': 256,
             'attribution': 'Map tiles designed by Carter Burr'
@@ -99,7 +108,16 @@
             'source': 'basefire'
         });
 
-        const toggleableLayerIds = ['Basemap', 'Fire Station', 'Basemap and Data'];
+        map.addLayer({
+            'id': 'UW Theme',
+            'type': 'raster',
+            'layout': {
+                'visibility': 'none'
+            },
+            'source': 'uw'
+        });
+
+        const toggleableLayerIds = ['Basemap', 'Fire Station', 'Basemap and Data', 'UW Theme'];
         const menu = document.getElementById('menu');
 
         toggleableLayerIds.forEach(layerId => {
