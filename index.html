@@ -66,14 +66,14 @@
         map.addSource('basefire', {
             'type': 'raster',
             'tiles': [
-                'assets/basefire/{z}/{x}/{y}.png'
+                'assets/basemap-and-data/{z}/{x}/{y}.png'
             ],
             'tileSize': 256,
             'attribution': 'Map tiles designed by Carter Burr'
         });
 
         map.addLayer({
-            'id': 'basemap',
+            'id': 'Basemap',
             'type': 'raster',
             'layout': {
                 'visibility': 'none'
@@ -82,7 +82,7 @@
         });
 
         map.addLayer({
-            'id': 'firestation',
+            'id': 'Fire Station',
             'type': 'raster',
             'layout': {
                 'visibility': 'none'
@@ -91,7 +91,7 @@
         });
 
         map.addLayer({
-            'id': 'basefire',
+            'id': 'Basemap and Data',
             'type': 'raster',
             'layout': {
                 'visibility': 'none'
@@ -99,7 +99,7 @@
             'source': 'basefire'
         });
 
-        const toggleableLayerIds = ['basemap', 'firestation', 'basefire'];
+        const toggleableLayerIds = ['Basemap', 'Fire Station', 'Basemap and Data'];
         const menu = document.getElementById('menu');
 
         toggleableLayerIds.forEach(layerId => {
