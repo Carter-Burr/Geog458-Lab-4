@@ -40,7 +40,7 @@
     let map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/light-v10',
-        zoom: 12,
+        zoom: 11,
         center: [-122.2559435, 47.6002614]
     });
 
@@ -57,7 +57,7 @@
         map.addSource('firestation', {
             'type': 'raster',
             'tiles': [
-                'assets/firestation/{z}/{x}/{y}.png'
+                'assets/firestations/{z}/{x}/{y}.png'
             ],
             'tileSize': 256,
             'attribution': 'Map tiles designed by Carter Burr'
